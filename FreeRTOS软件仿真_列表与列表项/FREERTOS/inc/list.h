@@ -74,17 +74,40 @@ typedef struct xLIST
 
 /* 获取链表节点的OWNER, 即TCB(任务控制块) */
 #define listGET_OWNER_OF_NEXT_ENTRY( pxTCB, pxList )				\
-{																	\
-	List_t * const pxConstList = ( pxList );						\
-	/* 节点索引指向链表第一个节点调整节点索引执政，指向下一个节点	
-	 如果当前链表有N个节点，当第N次调用该函数时，pxIndex则指向第N个节点 */ \
-	( pxConstList )->pxIndex = ( pxConstList )->pxIndex->pxNext;	
-	/* 当前链表为空 */												\
-	if(( void * )( pxConstList )->pxIndex == ( void * ) & (( pxConstList )->xListEnd )) \
-	{																\
-		
-	}
+{	List_t * const pxConstList = ( pxList );											    \
+	/* 节点索引指向链表第一个节点调整节点索引指针，指向下一个节点，
+    如果当前链表有N个节点，当第N次调用该函数时，pxInedex则指向第N个节点 */\
+	( pxConstList )->pxIndex = ( pxConstList )->pxIndex->pxNext;							\
+	/* 当前链表为空 */                                                                       \
+	if( ( void * ) ( pxConstList )->pxIndex == ( void * ) &( ( pxConstList )->xListEnd ) )	\
+	{																						\
+		( pxConstList )->pxIndex = ( pxConstList )->pxIndex->pxNext;						\
+	}																						\
+	/* 获取节点的OWNER，即TCB */                                                             \
+	( pxTCB ) = ( pxConstList )->pxIndex->pvOwner;											 \
 }
+
+
+#define listGET_OWNER_OF_HEAD_ENTRY( pxList )           ((&(( pxList )->xListEnd ))->pxNext->pvOwner )
+
+/************************************************
+                  函数声明
+************************************************/
+// 链表节点初始化
+extern void vListInitialiseItem( ListItem_t * const pxItem );
+
+// 链表根节点初始化
+extern void vListInitialise( List_t * const pxList );
+
+// 将节点插入到链表尾部
+extern void vListInsertEnd( List_t * const pxList, ListItem_t * const pxNewListItem );
+
+// 将节点按照升序排列插入链表
+extern void vListInsert( List_t * const pxList, ListItem_t * const pxNewListItem );
+
+// 从节点中将链表删除
+extern UBaseType_t uxListRemove( ListItem_t * const pxItemToRemove );
+
 
 #endif  /* __LIST_H_ */
 

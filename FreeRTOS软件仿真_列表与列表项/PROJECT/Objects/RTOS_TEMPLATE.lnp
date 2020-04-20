@@ -1,5 +1,6 @@
 --cpu Cortex-M3
 ".\objects\main.o"
+".\objects\list.o"
 ".\objects\startup_armcm3.o"
 ".\objects\system_armcm3.o"
 --strict --scatter ".\Objects\RTOS_TEMPLATE.sct"

@@ -37,13 +37,13 @@ void vListInitialise( List_t * const pxList)
 
 
 //*****************************************************************************/
-//*函数名 :void VlistInsertEnd( List_t * const pxList, ListItem_t * const pxNewListItem)
+//*函数名 :void vListInsertEnd( List_t * const pxList, ListItem_t * const pxNewListItem)
 //*说明   : 将节点插入到链表尾部,即插入到最后一个节点的前面，充当最后节点
 //*参数   : List_t * const pxList 列表     ListItem_t * const pxNewListItem   列表项
 //*返回值 :
 //*作者   :
 //*****************************************************************************/
-void VlistInsertEnd( List_t * const pxList, ListItem_t * const pxNewListItem)
+void vListInsertEnd( List_t * const pxList, ListItem_t * const pxNewListItem)
 {
     ListItem_t * const pxIndex  = pxList->pxIndex;      // 找出链表的尾节点，即链表的索引
         
@@ -62,13 +62,13 @@ void VlistInsertEnd( List_t * const pxList, ListItem_t * const pxNewListItem)
 
 
 //*****************************************************************************/
-//*函数名 :void VlistInsert( List_t * const pxList, ListItem_t * const pxNewListItem)
+//*函数名 :void vListInsert( List_t * const pxList, ListItem_t * const pxNewListItem)
 //*说明   :将节点按照升序排列插入链表
 //*参数   :List_t * const pxList  需要插入的节点  ListItem_t * const pxNewListItem  被插入的链表
 //*返回值 :无
 //*作者   :
 //*****************************************************************************/
-void VlistInsert( List_t * const pxList, ListItem_t * const pxNewListItem)
+void vListInsert( List_t * const pxList, ListItem_t * const pxNewListItem)
 {
 	ListItem_t 		* pxIterator;						// 定义一个列表项
 	
